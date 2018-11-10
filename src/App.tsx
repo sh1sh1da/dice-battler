@@ -1,11 +1,15 @@
 import * as React from 'react';
+import { Provider } from 'react-redux';
 import './App.css';
-import EnemyComponent from "./EnemyComponent";
+import EnemyContainer from './EnemyContainer';
+import { buildEnemyStore } from './store';
 
 class App extends React.Component {
   public render() {
     return (
-      <EnemyComponent />
+      <Provider store={buildEnemyStore()}>
+        <EnemyContainer />
+      </Provider>
     );
   }
 }
