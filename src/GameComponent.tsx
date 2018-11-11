@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Dispatch } from 'redux';
 import { reduceHP } from './actions';
+import EnemyComponent from './EnemyComponent';
+import PlayerComponent from './PlayerComponent';
 import { IGameState } from './reducer';
 
 interface IProps extends IGameState {
@@ -24,9 +26,8 @@ export default class extends React.Component<IProps, IState> {
   public render() {
     return (
       <div style={{ margin: 100 }}>
-        <img src="koboruto.png" />
-        <p>残りHP: {this.props.enemyHP}</p>
-        <button onClick={this.decrementHP}>attack!</button>
+        <EnemyComponent enemyHP={this.props.enemyHP} />
+        <PlayerComponent dispatch={this.props.dispatch} />
       </div>
     )
   }
