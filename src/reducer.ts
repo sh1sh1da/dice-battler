@@ -1,17 +1,17 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import * as actions from './actions';
 
-export interface IEnemyState {
-  hp: number;
+export interface IGameState {
+  enemyHP: number;
 }
 
-export const initialReduceEnemyState: IEnemyState = {
-  hp: 10
+export const initialReduceGameState: IGameState = {
+  enemyHP: 10
 };
 
-export default reducerWithInitialState(initialReduceEnemyState)
-  .case(actions.reduceHP, (state: IEnemyState, payload: number) => ({
+export default reducerWithInitialState(initialReduceGameState)
+  .case(actions.reduceHP, (state: IGameState, payload: number) => ({
     ...state,
-    hp: state.hp - payload
+    enemyHP: state.enemyHP - payload
   }))
   .build();

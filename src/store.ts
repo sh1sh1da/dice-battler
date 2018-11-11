@@ -4,7 +4,7 @@ import reducer from './reducer';
 
 const composeEnhancers = composeWithDevTools({});
 
-export const buildEnemyStore = () => (
+export const buildGameStore = () => (
   process.env.NODE_ENV === 'production' ?
   createStore(
     reducer,
