@@ -10,7 +10,7 @@ export const initialReduceGameState: IGameState = {
 };
 
 export default reducerWithInitialState(initialReduceGameState)
-  .case(actions.reduceHP, (state: IGameState, payload: number) => ({
+  .case(actions.damageToEnemy, (state: IGameState, payload: number) => ({
     ...state,
     enemyHP: state.enemyHP - payload
   }))

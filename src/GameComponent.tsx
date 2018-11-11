@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Dispatch } from 'redux';
-import { reduceHP } from './actions';
+import { damageToEnemy } from './actions';
 import EnemyComponent from './EnemyComponent';
 import PlayerComponent from './PlayerComponent';
 import { IGameState } from './reducer';
@@ -20,7 +20,7 @@ export default class extends React.Component<IProps, IState> {
   }
 
   public decrementHP = () => {
-    this.props.dispatch(reduceHP(1));
+    this.props.dispatch(damageToEnemy(1));
   }
 
   public render() {

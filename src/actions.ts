@@ -1,6 +1,6 @@
 import actionCreatorFactory from 'typescript-fsa';
 const actionCreator = actionCreatorFactory();
 
-export const reduceHP = actionCreator<number>(
-  'REDUCE_HP'
+export const damageToEnemy = actionCreator<number>(
+  'DAMAGE_TO_ENEMY'
 )

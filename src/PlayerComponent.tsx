@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Dispatch } from 'redux';
-import { reduceHP } from './actions';
+import { damageToEnemy } from './actions';
 
 interface IProps {
   dispatch: Dispatch;
@@ -11,7 +11,7 @@ export default class extends React.Component<IProps> {
   public render() {
     return (
       <div style={{ margin: 100 }}>
-        <button onClick={() => this.props.dispatch(reduceHP(1))}>attack!</button>
+        <button onClick={() => this.props.dispatch(damageToEnemy(1))}>attack!</button>
       </div>
     )
   }
