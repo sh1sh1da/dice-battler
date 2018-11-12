@@ -10,8 +10,11 @@ interface IProps {
 export default class extends React.Component<IProps> {
   public render() {
     return (
-      <div style={{ margin: 100 }}>
+      <div style={{ margin: 10 }}>
         <button onClick={() => this.props.dispatch(damageToEnemy(1))}>attack!</button>
+        <div style={{ marginTop: 20 }}>
+          <span style={{ border: "solid", padding: 10 }}>1</span>
+        </div>
       </div>
     )
   }

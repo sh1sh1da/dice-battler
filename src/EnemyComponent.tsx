@@ -8,7 +8,7 @@ interface IProps {
 export default class extends React.Component<IProps> {
   public render() {
     return (
-      <div style={{ margin: 100 }}>
+      <div style={{ margin: 10 }}>
         <img src="koboruto.png" />
         <p>残りHP: {this.props.enemyHP}</p>
       </div>
