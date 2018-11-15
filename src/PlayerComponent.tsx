@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Dispatch } from 'redux';
 import { damageToEnemy, setCurrentDiceValue } from './actions';
+import { IDiceValue } from './reducer';
 
 interface IProps {
   dispatch: Dispatch;
-  currentDiceValue: number;
+  currentDiceValue: IDiceValue;
 }
 
 /* tslint:disable:jsx-no-lambda */
@@ -16,7 +17,7 @@ export default class extends React.Component<IProps> {
         <button onClick={() => this.attack()}>attack!</button>
         <div style={{ marginTop: 20 }}>
           <span style={{ border: "solid", padding: 10 }}>
-            {this.props.currentDiceValue === 0 ? '?' : this.props.currentDiceValue}
+            {this.props.currentDiceValue.value === 0 ? '?' : this.props.currentDiceValue.value}
           </span>
         </div>
       </div>
@@ -25,7 +26,7 @@ export default class extends React.Component<IProps> {
 
   private attack() {
     const value = this.diceRoll();
-    this.props.dispatch(setCurrentDiceValue(value));
+    this.props.dispatch(setCurrentDiceValue({type: 'attack', value}));
     this.props.dispatch(damageToEnemy(value));
   }
 
