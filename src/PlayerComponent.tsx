@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Dispatch } from 'redux';
 import { damageToEnemy, setCurrentDiceValue } from './actions';
+import { DiceValueType } from './diceValueType';
 import { IDiceValue } from './reducer';
 
 interface IProps {
@@ -15,10 +16,14 @@ export default class extends React.Component<IProps> {
     return (
       <div style={{ margin: 10 }}>
         <button onClick={() => this.attack()}>attack!</button>
-        <div style={{ marginTop: 20 }}>
-          <span style={{ border: "solid", padding: 10 }}>
-            {this.props.currentDiceValue.value === 0 ? '?' : this.props.currentDiceValue.value}
-          </span>
+        <div style={{ marginTop: 20, width: 60, textAlign: "center" }}>
+          <div style={{ border: "solid", padding: 10 }}>
+            {
+              this.props.currentDiceValue.value === 0
+                ? '?'
+                : <span><img src="sword.png" height="16px" /> {this.props.currentDiceValue.value} </span>
+            }
+          </div>
         </div>
       </div>
     )
@@ -26,7 +31,7 @@ export default class extends React.Component<IProps> {
 
   private attack() {
     const value = this.diceRoll();
-    this.props.dispatch(setCurrentDiceValue({type: 'attack', value}));
+    this.props.dispatch(setCurrentDiceValue({ type: DiceValueType.Damage, value }));
     this.props.dispatch(damageToEnemy(value));
   }
 

@@ -1,5 +1,6 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import * as actions from './actions';
+import { DiceValueType } from './diceValueType';
 
 export interface IDiceValue {
   type: string;
@@ -13,15 +14,15 @@ export interface IGameState {
 }
 
 export const initialReduceGameState: IGameState = {
-  currentDiceValue: { type: 'attack', value: 0 },
+  currentDiceValue: { type: DiceValueType.Damage, value: 0 },
   enemyHP: 10,
   playerDices: [
-    { type: 'attack', value: 1 },
-    { type: 'attack', value: 1 },
-    { type: 'attack', value: 1 },
-    { type: 'attack', value: 1 },
-    { type: 'attack', value: 1 },
-    { type: 'attack', value: 1 }
+    { type: DiceValueType.Damage, value: 1 },
+    { type: DiceValueType.Damage, value: 1 },
+    { type: DiceValueType.Damage, value: 1 },
+    { type: DiceValueType.Damage, value: 1 },
+    { type: DiceValueType.Damage, value: 1 },
+    { type: DiceValueType.Damage, value: 1 }
   ]
 };
 
