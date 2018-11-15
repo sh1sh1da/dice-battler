@@ -27,7 +27,7 @@ export default class extends React.Component<IProps, IState> {
     return (
       <div style={{ margin: 100 }}>
         <EnemyComponent enemyHP={this.props.enemyHP} />
-        <PlayerComponent dispatch={this.props.dispatch} currentDiceValue={this.props.currentDiceValue} />
+        <PlayerComponent dispatch={this.props.dispatch} currentDiceValue={this.props.currentDiceValue} playerDice={this.props.playerDice} />
       </div>
     )
   }

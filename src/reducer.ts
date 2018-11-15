@@ -10,19 +10,19 @@ export interface IDiceValue {
 export interface IGameState {
   enemyHP: number;
   currentDiceValue: IDiceValue;
-  playerDices: IDiceValue[];
+  playerDice: IDiceValue[];
 }
 
 export const initialReduceGameState: IGameState = {
   currentDiceValue: { type: DiceValueType.Damage, value: 0 },
   enemyHP: 10,
-  playerDices: [
+  playerDice: [
     { type: DiceValueType.Damage, value: 1 },
     { type: DiceValueType.Damage, value: 1 },
     { type: DiceValueType.Damage, value: 1 },
-    { type: DiceValueType.Damage, value: 1 },
-    { type: DiceValueType.Damage, value: 1 },
-    { type: DiceValueType.Damage, value: 1 }
+    { type: DiceValueType.Money, value: 1 },
+    { type: DiceValueType.Money, value: 1 },
+    { type: DiceValueType.Money, value: 1 }
   ]
 };
 

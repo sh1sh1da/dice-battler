@@ -7,6 +7,7 @@ import { IDiceValue } from './reducer';
 interface IProps {
   dispatch: Dispatch;
   currentDiceValue: IDiceValue;
+  playerDice: IDiceValue[];
 }
 
 /* tslint:disable:jsx-no-lambda */
@@ -15,13 +16,13 @@ export default class extends React.Component<IProps> {
   public render() {
     return (
       <div style={{ margin: 10 }}>
-        <button onClick={() => this.attack()}>attack!</button>
+        <button onClick={() => this.rollDice()}>ダイスロール</button>
         <div style={{ marginTop: 20, width: 60, textAlign: "center" }}>
           <div style={{ border: "solid", padding: 10 }}>
             {
               this.props.currentDiceValue.value === 0
                 ? '?'
-                : <span><img src="sword.png" height="16px" /> {this.props.currentDiceValue.value} </span>
+                : this.renderDiceView()
             }
           </div>
         </div>
@@ -29,15 +30,21 @@ export default class extends React.Component<IProps> {
     )
   }
 
-  private attack() {
-    const value = this.diceRoll();
-    this.props.dispatch(setCurrentDiceValue({ type: DiceValueType.Damage, value }));
-    this.props.dispatch(damageToEnemy(value));
+  private renderDiceView(): JSX.Element {
+    if (this.props.currentDiceValue.type === DiceValueType.Damage) {
+      return <span><img src="sword.png" height="16px" /> {this.props.currentDiceValue.value} </span>;
+    } else if (this.props.currentDiceValue.type === DiceValueType.Money) {
+      return <span><img src="coin.png" height="16px" /> {this.props.currentDiceValue.value} </span>;
+    }
+    return <span>?</span>;
   }
 
-  private diceRoll() {
-    const diceValues = [1, 2, 3, 4, 5, 6];
-    const index = Math.floor(Math.random() * 6)
-    return diceValues[index];
+  private rollDice() {
+    const index = Math.floor(Math.random() * 6);
+    const diceValue = this.props.playerDice[index];
+    this.props.dispatch(setCurrentDiceValue({ type: diceValue.type, value: diceValue.value }));
+    if (diceValue.type === DiceValueType.Damage) {
+      this.props.dispatch(damageToEnemy(diceValue.value));
+    }
   }
 }
