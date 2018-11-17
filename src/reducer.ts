@@ -20,7 +20,7 @@ export const initialReduceGameState: IGameState = {
   currentDiceValue: { type: DiceValueType.Initial, value: 0 },
   currentMoney: 0,
   currentPhase: PhaseType.Standby,
-  enemyHP: 10,
+  enemyHP: 100,
   playerDice: [
     { type: DiceValueType.Damage, value: 1 },
     { type: DiceValueType.Damage, value: 1 },
