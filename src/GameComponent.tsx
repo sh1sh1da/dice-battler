@@ -39,7 +39,7 @@ export default class extends React.Component<IProps, IState> {
           currentPhase={this.props.currentPhase}
         />
         {this.props.currentPhase === PhaseType.Action
-          ? <ActionPanelComponent dispatch={this.props.dispatch} />
+          ? <ActionPanelComponent dispatch={this.props.dispatch} currentMoney={this.props.currentMoney} />
           : null
         }
       </div>
