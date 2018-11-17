@@ -28,7 +28,7 @@ export default class extends React.Component<IProps, IState> {
 
   public render() {
     return (
-      <div style={{ margin: 100, width: 300 }}>
+      <div style={{ margin: 40, width: 300 }}>
         <EnemyComponent
           enemyHP={this.props.enemyHP}
           currentDiceValue={this.props.currentDiceValue}
