@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Dispatch } from 'redux';
+import ActionPanelComponent from './ActionPanelComponent';
 import { damageToEnemy } from './actions';
 import EnemyComponent from './EnemyComponent';
 import PlayerComponent from './PlayerComponent';
@@ -25,7 +26,7 @@ export default class extends React.Component<IProps, IState> {
 
   public render() {
     return (
-      <div style={{ margin: 100 }}>
+      <div style={{ margin: 100, width: 300 }}>
         <EnemyComponent enemyHP={this.props.enemyHP} />
         <PlayerComponent
           dispatch={this.props.dispatch}
@@ -33,6 +34,7 @@ export default class extends React.Component<IProps, IState> {
           playerDice={this.props.playerDice}
           enemyHP={this.props.enemyHP}
         />
+        <ActionPanelComponent dispatch={this.props.dispatch}/>
       </div>
     )
   }

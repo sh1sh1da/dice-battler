@@ -19,7 +19,7 @@ export default class extends React.Component<IProps> {
       <div style={{ margin: 10 }}>
         <button onClick={() => this.rollDice()}>ダイスロール</button>
         <div style={{ marginTop: 20, width: 60, textAlign: "center" }}>
-          <div style={{ border: "solid", padding: 10 }}>
+          <div style={{ border: "solid 2px", padding: 10 }}>
             {
               this.props.currentDiceValue.value === 0
                 ? '?'
