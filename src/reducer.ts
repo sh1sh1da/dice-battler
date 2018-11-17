@@ -26,7 +26,7 @@ export const initialReduceGameState: IGameState = {
   ]
 };
 
-const powerUpDamagePoint = (state: IGameState, payload: number) => {
+const powerUpDamagePoint = (state: IGameState, payload: number): IGameState => {
   const damageIndexes: number[] = [];
   state.playerDice.forEach((diceSurface, i) => {
     if (diceSurface.type === DiceValueType.Damage) {
@@ -34,6 +34,30 @@ const powerUpDamagePoint = (state: IGameState, payload: number) => {
     }
   })
   const targetIndex = damageIndexes[Math.floor(Math.random() * damageIndexes.length)];
+  const poweredDice = state.playerDice.map((diceSurface, i) => {
+    if (i === targetIndex) {
+      return {
+        ...diceSurface,
+        value: diceSurface.value + payload
+      };
+    }
+    return diceSurface;
+  });
+
+  return {
+    ...state,
+    playerDice: poweredDice
+  };
+}
+
+const powerUpMoneyPoint = (state: IGameState, payload: number): IGameState => {
+  const moneyIndexes: number[] = [];
+  state.playerDice.forEach((diceSurface, i) => {
+    if (diceSurface.type === DiceValueType.Money) {
+      moneyIndexes.push(i);
+    }
+  })
+  const targetIndex = moneyIndexes[Math.floor(Math.random() * moneyIndexes.length)];
   const poweredDice = state.playerDice.map((diceSurface, i) => {
     if (i === targetIndex) {
       return {
@@ -61,5 +85,8 @@ export default reducerWithInitialState(initialReduceGameState)
   }))
   .case(actions.powerUpDamagePoint, (state: IGameState, payload: number) => (
     powerUpDamagePoint(state, payload)
+  ))
+  .case(actions.powerUpMoneyPoint, (state: IGameState, payload: number) => (
+    powerUpMoneyPoint(state, payload)
   ))
   .build();

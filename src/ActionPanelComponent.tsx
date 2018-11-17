@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Dispatch } from 'redux';
-import { powerUpDamagePoint } from './actions';
+import { powerUpDamagePoint, powerUpMoneyPoint } from './actions';
 
 interface IProps {
   dispatch: Dispatch;
@@ -16,7 +16,7 @@ export default class extends React.Component<IProps> {
             <button onClick={() => this.props.dispatch(powerUpDamagePoint(1))}>攻撃の目をランダムに1強化</button>
           </li>
           <li style={{ marginTop: 8, marginBottom: 8 }}>
-            <button>コインの目をランダムに1強化</button>
+            <button onClick={() => this.props.dispatch(powerUpMoneyPoint(1))}>コインの目をランダムに1強化</button>
           </li>
         </ul>
       </div>

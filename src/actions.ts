@@ -13,3 +13,7 @@ export const setCurrentDiceValue = actionCreator<IDiceValue>(
 export const powerUpDamagePoint = actionCreator<number>(
   'POWER_UP_DAMAGE_POINT'
 )
+
+export const powerUpMoneyPoint = actionCreator<number>(
+  'POWER_UP_MONEY_POINT'
+)
