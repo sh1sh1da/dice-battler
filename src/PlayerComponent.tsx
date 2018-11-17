@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Dispatch } from 'redux';
-import { changePhase, damageToEnemy, setCurrentDiceValue, setCurrentMoney } from './actions';
+import { changePhase, damageToEnemy, incrementTurn, setCurrentDiceValue, setCurrentMoney } from './actions';
 import { DiceValueType } from './diceValueType';
 import { PhaseType } from './phaseType';
 import { IDiceValue } from './reducer';
@@ -61,5 +61,6 @@ export default class extends React.Component<IProps> {
       this.props.dispatch(setCurrentMoney(diceValue.value));
       this.props.dispatch(changePhase(PhaseType.Action))
     }
+    this.props.dispatch(incrementTurn());
   }
 }

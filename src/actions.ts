@@ -24,9 +24,13 @@ export const powerUpMoneyPoint = actionCreator<number>(
 )
 
 export const setCurrentMoney = actionCreator<number>(
-  'SET_CURRENT_Money'
+  'SET_CURRENT_MONEY'
 )
 
 export const changePhase = actionCreator<PhaseType>(
   'CHANGE_PHASE'
+)
+
+export const incrementTurn = actionCreator(
+  'INCREMENT_TURN'
 )

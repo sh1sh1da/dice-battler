@@ -14,12 +14,14 @@ export interface IGameState {
   playerDice: IDiceValue[];
   currentPhase: PhaseType;
   currentMoney: number;
+  currentTurn: number;
 }
 
 export const initialReduceGameState: IGameState = {
   currentDiceValue: { type: DiceValueType.Initial, value: 0 },
   currentMoney: 0,
   currentPhase: PhaseType.Standby,
+  currentTurn: 0,
   enemyHP: 100,
   playerDice: [
     { type: DiceValueType.Damage, value: 1 },
@@ -125,5 +127,9 @@ export default reducerWithInitialState(initialReduceGameState)
   .case(actions.changePhase, (state: IGameState, payload: PhaseType) => ({
     ...state,
     currentPhase: payload
+  }))
+  .case(actions.incrementTurn, (state: IGameState) => ({
+    ...state,
+    currentTurn: state.currentTurn + 1
   }))
   .build();
