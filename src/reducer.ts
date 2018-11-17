@@ -26,6 +26,24 @@ export const initialReduceGameState: IGameState = {
   ]
 };
 
+const powerUpDicePoint = (state: IGameState, payload: number): IGameState => {
+  const targetIndex = Math.floor(Math.random() * state.playerDice.length)
+  const poweredDice = state.playerDice.map((diceSurface, i) => {
+    if (i === targetIndex) {
+      return {
+        ...diceSurface,
+        value: diceSurface.value + payload
+      };
+    }
+    return diceSurface;
+  });
+
+  return {
+    ...state,
+    playerDice: poweredDice
+  };
+}
+
 const powerUpDamagePoint = (state: IGameState, payload: number): IGameState => {
   const damageIndexes: number[] = [];
   state.playerDice.forEach((diceSurface, i) => {
@@ -83,6 +101,9 @@ export default reducerWithInitialState(initialReduceGameState)
     ...state,
     currentDiceValue: payload
   }))
+  .case(actions.powerUpDicePoint, (state: IGameState, payload: number) => (
+    powerUpDicePoint(state, payload)
+  ))
   .case(actions.powerUpDamagePoint, (state: IGameState, payload: number) => (
     powerUpDamagePoint(state, payload)
   ))
