@@ -8,6 +8,7 @@ interface IProps {
   dispatch: Dispatch;
   currentDiceValue: IDiceValue;
   playerDice: IDiceValue[];
+  enemyHP: number;
 }
 
 /* tslint:disable:jsx-no-lambda */
@@ -44,7 +45,11 @@ export default class extends React.Component<IProps> {
     const diceValue = this.props.playerDice[index];
     this.props.dispatch(setCurrentDiceValue({ type: diceValue.type, value: diceValue.value }));
     if (diceValue.type === DiceValueType.Damage) {
-      this.props.dispatch(damageToEnemy(diceValue.value));
+      if (this.props.enemyHP - diceValue.value > 0) {
+        this.props.dispatch(damageToEnemy(diceValue.value));
+      } else {
+        this.props.dispatch(damageToEnemy(this.props.enemyHP));
+      }
     }
   }
 }

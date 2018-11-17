@@ -31,6 +31,7 @@ export default class extends React.Component<IProps, IState> {
           dispatch={this.props.dispatch}
           currentDiceValue={this.props.currentDiceValue}
           playerDice={this.props.playerDice}
+          enemyHP={this.props.enemyHP}
         />
       </div>
     )
