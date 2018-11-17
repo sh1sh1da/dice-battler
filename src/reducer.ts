@@ -17,7 +17,7 @@ export interface IGameState {
 }
 
 export const initialReduceGameState: IGameState = {
-  currentDiceValue: { type: DiceValueType.Damage, value: 0 },
+  currentDiceValue: { type: DiceValueType.Initial, value: 0 },
   currentMoney: 0,
   currentPhase: PhaseType.Standby,
   enemyHP: 10,
