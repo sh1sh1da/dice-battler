@@ -1,4 +1,5 @@
 import actionCreatorFactory from 'typescript-fsa';
+import { PhaseType } from './phaseType';
 import { IDiceValue } from './reducer';
 const actionCreator = actionCreatorFactory();
 
@@ -20,4 +21,12 @@ export const powerUpDamagePoint = actionCreator<number>(
 
 export const powerUpMoneyPoint = actionCreator<number>(
   'POWER_UP_MONEY_POINT'
+)
+
+export const setCurrentMoney = actionCreator<number>(
+  'SET_CURRENT_Money'
+)
+
+export const changePhase = actionCreator<PhaseType>(
+  'CHANGE_PHASE'
 )

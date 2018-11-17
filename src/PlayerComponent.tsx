@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Dispatch } from 'redux';
-import { damageToEnemy, setCurrentDiceValue } from './actions';
+import { changePhase, damageToEnemy, setCurrentDiceValue, setCurrentMoney } from './actions';
 import { DiceValueType } from './diceValueType';
 import { PhaseType } from './phaseType';
 import { IDiceValue } from './reducer';
@@ -57,6 +57,9 @@ export default class extends React.Component<IProps> {
       } else {
         this.props.dispatch(damageToEnemy(this.props.enemyHP));
       }
+    } else if (diceValue.type === DiceValueType.Money) {
+      this.props.dispatch(setCurrentMoney(diceValue.value));
+      this.props.dispatch(changePhase(PhaseType.Action))
     }
   }
 }

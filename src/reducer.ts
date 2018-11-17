@@ -13,10 +13,12 @@ export interface IGameState {
   currentDiceValue: IDiceValue;
   playerDice: IDiceValue[];
   currentPhase: PhaseType;
+  currentMoney: number;
 }
 
 export const initialReduceGameState: IGameState = {
   currentDiceValue: { type: DiceValueType.Damage, value: 0 },
+  currentMoney: 0,
   currentPhase: PhaseType.Standby,
   enemyHP: 10,
   playerDice: [
@@ -105,8 +107,7 @@ export default reducerWithInitialState(initialReduceGameState)
   }))
   .case(actions.setCurrentDiceValue, (state: IGameState, payload: IDiceValue) => ({
     ...state,
-    currentDiceValue: payload,
-    currentPhase: PhaseType.Action
+    currentDiceValue: payload
   }))
   .case(actions.powerUpDicePoint, (state: IGameState, payload: number) => (
     powerUpDicePoint(state, payload)
@@ -117,4 +118,12 @@ export default reducerWithInitialState(initialReduceGameState)
   .case(actions.powerUpMoneyPoint, (state: IGameState, payload: number) => (
     powerUpMoneyPoint(state, payload)
   ))
+  .case(actions.setCurrentMoney, (state: IGameState, payload: number) => ({
+    ...state,
+    currentMoney: payload
+  }))
+  .case(actions.changePhase, (state: IGameState, payload: PhaseType) => ({
+    ...state,
+    currentPhase: payload
+  }))
   .build();
