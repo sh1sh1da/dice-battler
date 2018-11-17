@@ -1,6 +1,7 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import * as actions from './actions';
 import { DiceValueType } from './diceValueType';
+import { PhaseType } from './phaseType';
 
 export interface IDiceValue {
   type: string;
@@ -11,10 +12,12 @@ export interface IGameState {
   enemyHP: number;
   currentDiceValue: IDiceValue;
   playerDice: IDiceValue[];
+  currentPhase: PhaseType;
 }
 
 export const initialReduceGameState: IGameState = {
   currentDiceValue: { type: DiceValueType.Damage, value: 0 },
+  currentPhase: PhaseType.Standby,
   enemyHP: 10,
   playerDice: [
     { type: DiceValueType.Damage, value: 1 },
@@ -23,7 +26,7 @@ export const initialReduceGameState: IGameState = {
     { type: DiceValueType.Money, value: 1 },
     { type: DiceValueType.Money, value: 1 },
     { type: DiceValueType.Money, value: 1 }
-  ]
+  ],
 };
 
 const powerUpDicePoint = (state: IGameState, payload: number): IGameState => {
@@ -40,6 +43,7 @@ const powerUpDicePoint = (state: IGameState, payload: number): IGameState => {
 
   return {
     ...state,
+    currentPhase: PhaseType.Standby,
     playerDice: poweredDice
   };
 }
@@ -64,6 +68,7 @@ const powerUpDamagePoint = (state: IGameState, payload: number): IGameState => {
 
   return {
     ...state,
+    currentPhase: PhaseType.Standby,
     playerDice: poweredDice
   };
 }
@@ -88,6 +93,7 @@ const powerUpMoneyPoint = (state: IGameState, payload: number): IGameState => {
 
   return {
     ...state,
+    currentPhase: PhaseType.Standby,
     playerDice: poweredDice
   };
 }
@@ -99,7 +105,8 @@ export default reducerWithInitialState(initialReduceGameState)
   }))
   .case(actions.setCurrentDiceValue, (state: IGameState, payload: IDiceValue) => ({
     ...state,
-    currentDiceValue: payload
+    currentDiceValue: payload,
+    currentPhase: PhaseType.Action
   }))
   .case(actions.powerUpDicePoint, (state: IGameState, payload: number) => (
     powerUpDicePoint(state, payload)

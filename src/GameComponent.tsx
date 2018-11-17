@@ -4,6 +4,7 @@ import ActionPanelComponent from './ActionPanelComponent';
 import { damageToEnemy } from './actions';
 import DiceValuesComponent from './DiceValuesComponent';
 import EnemyComponent from './EnemyComponent';
+import { PhaseType } from './phaseType';
 import PlayerComponent from './PlayerComponent';
 import { IGameState } from './reducer';
 
@@ -29,14 +30,18 @@ export default class extends React.Component<IProps, IState> {
     return (
       <div style={{ margin: 100, width: 300 }}>
         <EnemyComponent enemyHP={this.props.enemyHP} />
+        <DiceValuesComponent playerDice={this.props.playerDice} />
         <PlayerComponent
           dispatch={this.props.dispatch}
           currentDiceValue={this.props.currentDiceValue}
           playerDice={this.props.playerDice}
           enemyHP={this.props.enemyHP}
+          currentPhase={this.props.currentPhase}
         />
-        <DiceValuesComponent playerDice={this.props.playerDice} />
-        <ActionPanelComponent dispatch={this.props.dispatch} />
+        {this.props.currentPhase === PhaseType.Action
+          ? <ActionPanelComponent dispatch={this.props.dispatch} />
+          : null
+        }
       </div>
     )
   }

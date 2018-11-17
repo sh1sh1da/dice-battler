@@ -9,7 +9,8 @@ interface IProps {
 export default class extends React.Component<IProps> {
   public render() {
     return (
-      <div>
+      <div style={{ border: 'solid 1px' }}>
+        <p style={{ margin: 4 }}>ダイスの状態</p>
         <ul>
           {this.renderDiceValues()}
         </ul>
