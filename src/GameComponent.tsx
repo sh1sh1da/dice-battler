@@ -2,6 +2,7 @@ import * as React from "react";
 import { Dispatch } from 'redux';
 import ActionPanelComponent from './ActionPanelComponent';
 import { damageToEnemy } from './actions';
+import DiceValuesComponent from './DiceValuesComponent';
 import EnemyComponent from './EnemyComponent';
 import PlayerComponent from './PlayerComponent';
 import { IGameState } from './reducer';
@@ -34,7 +35,8 @@ export default class extends React.Component<IProps, IState> {
           playerDice={this.props.playerDice}
           enemyHP={this.props.enemyHP}
         />
-        <ActionPanelComponent dispatch={this.props.dispatch}/>
+        <DiceValuesComponent playerDice={this.props.playerDice} />
+        <ActionPanelComponent dispatch={this.props.dispatch} />
       </div>
     )
   }
