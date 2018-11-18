@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Dispatch } from 'redux';
-import { changePhase, powerUpDamagePoint, powerUpDicePoint, powerUpMoneyPoint, setCurrentDiceValue } from './actions';
+import { addActionCount, changePhase, powerUpDamagePoint, powerUpDicePoint, powerUpMoneyPoint, setCurrentDiceValue } from './actions';
 import { DiceValueType } from './diceValueType';
 import { PhaseType } from './phaseType';
 
 interface IProps {
+  actionCount: number;
   dispatch: Dispatch;
   currentMoney: number;
 }
@@ -18,6 +19,7 @@ export default class extends React.Component<IProps> {
   public render() {
     return (
       <div style={{ margin: 10, padding: 1, border: 'solid 1px' }}>
+        <p>購入可能数: {this.props.actionCount}</p>
         <ul style={{ listStyle: 'none', paddingLeft: 10 }}>
           <li style={{ marginTop: 8, marginBottom: 8 }}>
             <span><img src={'coin.png'} /> x1 </span>
@@ -30,6 +32,10 @@ export default class extends React.Component<IProps> {
           <li style={{ marginTop: 8, marginBottom: 8 }}>
             <span><img src={'coin.png'} /> x2 </span>
             <button onClick={() => this.powerUpMoneyPoint(1)}>コインの目をランダムに1強化</button>
+          </li>
+          <li style={{ marginTop: 8, marginBottom: 8 }}>
+              <span><img src={'coin.png'} /> x2 </span>
+              <button onClick={() => this.addActionCount(1)}>購入可能数を1増やす</button>
           </li>
         </ul>
       </div>
@@ -64,5 +70,9 @@ export default class extends React.Component<IProps> {
     } else {
       alert('コインが足りません！');
     }
+  }
+
+  private addActionCount(count: number) {
+    this.props.dispatch(addActionCount(count));
   }
 }

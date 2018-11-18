@@ -34,3 +34,11 @@ export const changePhase = actionCreator<PhaseType>(
 export const incrementTurn = actionCreator(
   'INCREMENT_TURN'
 )
+
+export const addActionCount = actionCreator<number>(
+  'ADD_ACTION_COUNT'
+)
+
+export const resetActionCount = actionCreator(
+  'RESET_ACTION_COUNT'
+)

@@ -18,6 +18,7 @@ export interface IGameState {
 }
 
 export const initialReduceGameState: IGameState = {
+  actionCount: 0,
   currentDiceValue: { type: DiceValueType.Initial, value: 0 },
   currentMoney: 0,
   currentPhase: PhaseType.Standby,
@@ -131,5 +132,13 @@ export default reducerWithInitialState(initialReduceGameState)
   .case(actions.incrementTurn, (state: IGameState) => ({
     ...state,
     currentTurn: state.currentTurn + 1
+  }))
+  .case(actions.addActionCount, (state: IGameState, payload: number) => ({
+    ...state,
+    actionCount: state.actionCount + payload
+  }))
+  .case(actions.resetActionCount, (state: IGameState) => ({
+    ...state,
+    actionCount: 0
   }))
   .build();
